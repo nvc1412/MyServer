@@ -14,28 +14,28 @@ module.exports = {
   },
   detail: (req, res) => {
     let sql = "SELECT * FROM products WHERE id = ?";
-    db.query(sql, [req.params.productId], (err, response) => {
+    db.query(sql, [req.params.productsId], (err, response) => {
       if (err) throw err;
       res.json(response.rows);
     });
   },
   page: (req, res) => {
     let sql = "SELECT * FROM products WHERE page = ?";
-    db.query(sql, [req.params.productPage], (err, response) => {
+    db.query(sql, [req.params.productsPage], (err, response) => {
       if (err) throw err;
       res.json(response.rows);
     });
   },
   maker: (req, res) => {
     let sql = "SELECT * FROM products WHERE makers = ? LIMIT 10";
-    db.query(sql, [req.params.productMaker], (err, response) => {
+    db.query(sql, [req.params.producstMaker], (err, response) => {
       if (err) throw err;
       res.json(response.rows);
     });
   },
   search: (req, res) => {
     let sql = "SELECT * FROM products WHERE name LIKE ?";
-    db.query(sql, ["%" + req.params.productSearch + "%"], (err, response) => {
+    db.query(sql, ["%" + req.params.productsSearch + "%"], (err, response) => {
       if (err) throw err;
       res.json(response.rows);
     });
@@ -44,7 +44,7 @@ module.exports = {
     let data = req.body;
     let productId = req.params.productId;
     let sql = "UPDATE products SET ? WHERE id = ?";
-    db.query(sql, [data, productId], (err, response) => {
+    db.query(sql, [data, productsId], (err, response) => {
       if (err) throw err;
       res.json({ message: "Update success!" });
     });
