@@ -27,6 +27,7 @@ module.exports = {
       if (err) throw err;
       res.json(response.rows[0]);
     });
+    db.end;
   },
   update: (req, res) => {
     let data = req.body;
@@ -41,10 +42,10 @@ module.exports = {
         res.json({ message: "Update success!" });
       }
     );
+    db.end;
   },
   store: (req, res) => {
     let data = req.body;
-    console.log(data.name);
     let sql =
       "INSERT INTO users( name , date , phone , address , email , password) VALUES ($1, $2, $3, $4, $5, $6)";
     db.query(
@@ -62,6 +63,7 @@ module.exports = {
         res.json({ message: "Insert success!" });
       }
     );
+    db.end;
   },
   delete: (req, res) => {
     let sql = "DELETE FROM users WHERE id = $1";
@@ -69,5 +71,6 @@ module.exports = {
       if (err) throw err;
       res.json({ message: "Delete success!" });
     });
+    db.end;
   },
 };
